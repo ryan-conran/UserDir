@@ -33,11 +33,11 @@ function EmployeeDirectory(props) {
     }, []);
 
     const onFieldClick = () => {
-        if (sortDirection == 0) {
+        if (sortDirection === 0) {
             const t = employees.sort((emp1, emp2) => emp1.firstName.localeCompare(emp2.firstName));
             setEmployees([...t]);
             setSortDirection(1);
-        } else if (sortDirection == 1) {
+        } else if (sortDirection === 1) {
             const t = employees.sort((emp1, emp2) => emp2.firstName.localeCompare(emp1.firstName));
             setEmployees([...t]);
             setSortDirection(0);
