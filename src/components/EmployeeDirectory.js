@@ -9,10 +9,11 @@ function EmployeeDirectory(props) {
     const [sortDirection, setSortDirection] = useState(0);
     const [filteredArray, setFilteredArray] = useState([]);
 
-    useEffect(async () => {
+    useEffect(() => {
         console.log("useEffect");
-        try {
-            const resp = await axios.get(`https://randomuser.me/api/?results=${employeesNum}`);
+      
+             axios.get(`https://randomuser.me/api/?results=${employeesNum}`).then(resp => {
+
             setEmployees(resp.data.results.map(user => ({
                gender: user.gender,
                firstName: user.name.first,
@@ -27,9 +28,11 @@ function EmployeeDirectory(props) {
                email: user.email,
                phone: user.phone
             })));
-        } catch (ex) {
-            console.error("API request is wrong");
-        }
+                            
+        })
+         .catch ((err ) => {
+            console.error("API request is wrong", err);
+        })
     }, []);
 
     const onFieldClick = () => {
